@@ -1,0 +1,201 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* format container */
+* {
+    box-sizing: border-box;
+    margin: 14px;
+}
+
+body {
+    font-family: Georgia, serif;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left Sidebar */
+.sidebar {
+    border-radius: 10px;
+    width: 20%;
+    height: 660px;
+    background-color: rgba(255, 255, 255, 0.488);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+.top-box {
+    width: 80%;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.625);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;    
+    border: 2px solid #ffffff;
+    border-style: ridge;
+
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    margin-top: -20px;
+    background-color: transparent;
+    border: 2px solid #4e4e4e;
+    border-style: ridge;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle img {
+    width: 152px;
+    height: 152px;
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+
+
+.middle-box {
+    width: 80%;
+    height: 20px;
+    margin-top: -15px;
+    background-color: rgba(255, 255, 255, 0.625);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    border-style: ridge;
+}
+
+.third-box {
+    width: 80%;
+    height: 90px;
+    margin-top: -15px;
+    background-color: rgba(255, 255, 255, 0.625);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    border-style: ridge;   
+}
+
+.large-box {
+    width: 80%;
+    height: 250px;
+    margin-top: -15px;
+    background-color: rgba(255, 255, 255, 0.625);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16.2px;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    border-style: ridge;
+}
+
+/* Right SideBar */
+
+.main-content {
+    border-radius: 10px;
+    width: 80%;
+    height: 660px;
+    background-color: rgba(255, 255, 255, 0.488);
+    padding: 20px;
+    position: relative; 
+    overflow: auto;
+} 
+
+
+
+
+.content-box1 {
+    background-color: rgba(255, 255, 255, 0.625);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 97.5%;
+    height: 523px;
+    position: relative;
+    border: 2px solid #ffffff;
+    border-style: ridge;
+}
+
+.content-box2 {
+    background-color: rgba(255, 255, 255, 0.625);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 97.5%;
+    height: 400px;
+    position: relative;
+    border: 2px solid #ffffff;
+    border-style: ridge;
+    overflow: auto;
+}
+
+.content-box3 {
+    background-color: rgba(255, 255, 255, 0.625);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 97.5%;
+    height: 200px;
+    position: relative;
+    border: 2px solid #ffffff;
+    border-style: ridge;
+}
+
+h2 {
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.date-location {
+    font-size: 14px;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
