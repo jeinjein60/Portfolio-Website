@@ -1,100 +1,1066 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="main.css" />
-    <title>Website Layout</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Djeinabou Bah · CS & AI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DJEINABOU BAH · CS / AI PORTFOLIO
+   Aesthetic: dark + electric blue + pixel
+   ============================================ */
+
+:root {
+  --bg: #0a0e1a;
+  --bg-card: #111626;
+  --bg-card-hover: #161c30;
+  --border: #1f2742;
+  --border-bright: #2a3458;
+  --ink: #e6ecff;
+  --ink-soft: #9aa5c4;
+  --ink-muted: #5a6585;
+  --blue: #4a9eff;
+  --blue-bright: #5cb4ff;
+  --blue-glow: rgba(74, 158, 255, 0.4);
+  --blue-deep: #1e6acc;
+  --cyan: #7dd3fc;
+
+  --font-pixel: "Press Start 2P", monospace;
+  --font-body: "Sora", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  font-size: 15px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74, 158, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 158, 255, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--blue-glow) 0%, transparent 60%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 3rem;
+  background: rgba(10, 14, 26, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  color: var(--blue);
+  text-shadow: 0 0 12px var(--blue-glow);
+  letter-spacing: 0.05em;
+}
+
+.nav-links { display: flex; gap: 2rem; }
+
+.nav-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--blue-bright); }
+.nav-links a.active { color: var(--blue); }
+
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 8rem 3rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-title {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+.hero-title .accent {
+  color: var(--blue);
+  text-shadow: 0 0 20px var(--blue-glow);
+}
+
+.hero-name {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--blue);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hero-name::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--blue);
+  box-shadow: 0 0 12px var(--blue);
+  display: inline-block;
+}
+
+.hero-body p {
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.hero-body strong { color: var(--ink); font-weight: 500; }
+
+.hero-cta {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--blue);
+  color: var(--bg);
+  box-shadow: 0 0 24px var(--blue-glow);
+}
+.btn.primary { background: var(--blue); color: var(--bg); }
+.btn.primary:hover { background: var(--blue-bright); border-color: var(--blue-bright); }
+
+/* Pixel cat */
+.cat-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.pixel-cat {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  filter: drop-shadow(0 0 24px var(--blue-glow));
+  animation: catFloat 4s ease-in-out infinite;
+}
+
+@keyframes catFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.cat-wrap .sparkle {
+  position: absolute;
+  background: var(--blue);
+  box-shadow: 0 0 8px var(--blue);
+  width: 6px;
+  height: 6px;
+  animation: sparkle 2.5s ease-in-out infinite;
+}
+.sparkle:nth-child(1) { top: 10%; right: 15%; animation-delay: 0s; }
+.sparkle:nth-child(2) { top: 30%; right: 5%; animation-delay: 0.6s; width: 4px; height: 4px; }
+.sparkle:nth-child(3) { bottom: 20%; left: 8%; animation-delay: 1.2s; width: 8px; height: 8px; }
+.sparkle:nth-child(4) { bottom: 35%; right: 20%; animation-delay: 0.3s; width: 5px; height: 5px; }
+.sparkle:nth-child(5) { top: 50%; left: 12%; animation-delay: 1.5s; width: 4px; height: 4px; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* SECTIONS */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-title::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: var(--blue);
+  box-shadow: 0 0 12px var(--blue);
+}
+
+/* SKILLS */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--blue);
+  transition: width 0.4s ease;
+}
+.skill-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-bright);
+  transform: translateY(-2px);
+}
+.skill-card:hover::before { width: 100%; }
+
+.skill-card h3 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--blue);
+  margin-bottom: 1.25rem;
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--blue);
+  color: var(--blue-bright);
+  border-radius: 100px;
+  background: rgba(74, 158, 255, 0.05);
+  transition: all 0.2s;
+}
+.skill-tag:hover { background: rgba(74, 158, 255, 0.15); }
+
+/* PROJECTS */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: var(--blue); color: var(--blue-bright); }
+.filter-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--bg);
+  font-weight: 500;
+}
+
+.projects-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 0;
+  background: var(--blue);
+  transition: height 0.4s ease;
+  box-shadow: 0 0 12px var(--blue);
+}
+.project-card:hover { border-color: var(--border-bright); background: var(--bg-card-hover); }
+.project-card:hover::after { height: 100%; }
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.project-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.project-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.project-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--blue);
+  margin-bottom: 1rem;
+}
+
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+
+.stack-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.25rem 0.65rem;
+  background: rgba(74, 158, 255, 0.08);
+  border: 1px solid rgba(74, 158, 255, 0.3);
+  color: var(--cyan);
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+
+.project-bullets { list-style: none; padding: 0; }
+.project-bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+.project-bullets li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-size: 0.85rem;
+}
+
+.project-links { display: flex; gap: 1rem; margin-top: 1.25rem; flex-wrap: wrap; }
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--blue);
+  text-decoration: none;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.project-link:hover { border-bottom-color: var(--blue); }
+.project-link svg { width: 12px; height: 12px; }
+
+.project-category-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--blue);
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.project-hidden { display: none; }
+
+/* Live link callout — for deployed/online projects */
+.live-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.12) 0%, rgba(74, 158, 255, 0.04) 100%);
+  border: 1px solid var(--blue);
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.live-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(92, 180, 255, 0.12), transparent);
+  transition: left 0.6s ease;
+}
+.live-link:hover::before { left: 100%; }
+
+.live-link:hover {
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(74, 158, 255, 0.08) 100%);
+  box-shadow: 0 0 24px var(--blue-glow);
+  transform: translateX(2px);
+}
+
+.live-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  position: relative;
+}
+.live-icon svg { width: 20px; height: 20px; }
+
+/* Pulsing dot on the icon */
+.live-icon::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #4ade80;
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.live-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.live-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.live-url {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.live-arrow {
+  flex-shrink: 0;
+  color: var(--blue);
+  display: grid;
+  place-items: center;
+  transition: transform 0.25s ease;
+}
+.live-arrow svg { width: 16px; height: 16px; }
+.live-link:hover .live-arrow { transform: translateX(4px); }
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--blue) 0%, var(--blue-deep) 100%);
+}
+
+.timeline-item { position: relative; margin-bottom: 2rem; }
+
+.timeline-dot {
+  position: absolute;
+  left: -3.5rem;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background: var(--bg);
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--blue);
+  box-shadow: 0 0 16px var(--blue-glow);
+  z-index: 1;
+}
+
+.timeline-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.75rem;
+  transition: all 0.25s;
+}
+.timeline-content:hover { border-color: var(--border-bright); background: var(--bg-card-hover); }
+
+.timeline-role { font-weight: 600; font-size: 1.05rem; color: var(--ink); margin-bottom: 0.25rem; }
+
+.timeline-org {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--blue);
+  margin-bottom: 0.75rem;
+}
+
+.timeline-desc { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.6; }
+.timeline-desc ul { list-style: none; padding: 0; }
+.timeline-desc li { position: relative; padding-left: 1.25rem; margin-top: 0.4rem; }
+.timeline-desc li::before { content: "▸"; position: absolute; left: 0; color: var(--blue); }
+
+/* CONTACT */
+.contact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+  filter: blur(40px);
+}
+
+.contact-card > * { position: relative; }
+
+.contact-title {
+  font-family: var(--font-pixel);
+  font-size: 1.3rem;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.contact-sub { color: var(--ink-soft); margin-bottom: 2rem; font-size: 1rem; }
+
+.contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+
+.contact-links a {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--blue);
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--blue);
+  transition: all 0.2s;
+}
+.contact-links a:hover { background: var(--blue); color: var(--bg); box-shadow: 0 0 16px var(--blue-glow); }
+
+/* FOOTER */
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 3rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.78rem; }
+  .brand { font-size: 0.7rem; }
+
+  .hero { padding: 7rem 1.25rem 3rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .cat-wrap { order: -1; }
+  .pixel-cat { max-width: 220px; }
+
+  section { padding: 4rem 1.25rem; }
+
+  .timeline { padding-left: 3rem; }
+  .timeline-dot { left: -3rem; width: 42px; height: 42px; font-size: 0.55rem; }
+  .timeline::before { left: 20px; }
+
+  .contact-card { padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 500px) {
+  .project-header { flex-direction: column; gap: 0.4rem; }
+  .filter-btn { font-size: 0.68rem; padding: 0.45rem 0.7rem; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <div class="top-box">Djeinabou Bah</div>
-            <div class="circle">
-                <img src="orca.jpg" alt="Profile Pic" />
-            </div>
-            <div class="middle-box">djeinabou.bodie@gmail.com</div>
-            <div class="third-box">Fremont, CA <br />
-                <a href="https://www.linkedin.com/in/djeinabou-bah/"target="_blank">LinkedIn</a><br />
-                (510)-366-2016<br />
-                <a href="https://github.com/jeinjein60"target="_blank">GitHub</a>
-            </div>
-            <div class="large-box"><p style="font-size: 23px;margin-bottom: -12px;margin-top: 2px">EDUCATION</p><br />
-                University of California, Merced<br />
-                -------<br />
-                BS in Computer Science and Engineering <br />
-                -------<br />
-                Expected Graduation: <br />
-                May 2026 <br />
-                -------<br />
-                Organizations: National Society of Black Engineers
-                </div>
-        </div>
 
-        <div class="main-content">
-            <div class="content-box1">
-                <h2>WORK EXPERIENCE</h2>
-                <h3>CITRIS Educational Intern at CITRIS and the Banatao Institute</h3>
-                <p class="date-location">January 2025 - Present | Merced, CA</p>
-                <ul>
-                    <li>Teach CITRIS NexTech Robotics and FLY CITRIS course by introducing K-12 students to programming, design, drones, and embedded systems.</li>
-                    <li>Develop curriculum for introductory programming courses and workshops with VEX IQ Robots/CoDrones using block-based and Python programming.</li>
-                    <li>Design and create graphics, flyers, posters, etc., for CITRIS events using Adobe Creative Cloud.</li>
-                    <li>Maintain and improve the CITRIS website by transferring the HTML website to WordPress.</li>
-                </ul>
-                <h3>STEM Instructor/Intern at Lavner Education</h3>
-                <p class="date-location">Summer 2024 | San Francisco, CA</p>
-                <ul>
-                    <li>Performed teaching strategies to improve student understanding of complex STEM concepts and Digital Art, resulting in improved engagement and academic performance.</li>
-                    <li>Delivered instruction across various STEM subjects, utilizing a specific curriculum to foster critical thinking and critical thinking skills among diverse learners.</li>
-                    <li>Assessed student progress through formative evaluations and provided constructive feedback to guide individual learning paths and support skill development.</li>
-                </ul>
-            </div>
+<nav class="nav">
+  <div class="brand">DJEINABOU.B</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects" class="active">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-            <div class="content-box2">
-                <h2>PROJECT EXPERIENCE</h2>
-                <h3>Upgraded Wordle</h3>
-                <p class="date-location">Spring 2023 | Visual Studio Code | C++</p>
-                <ul>
-                    <li>Developed an upgraded version of the popular online game Wordle with multiple word-length options.</li>
-                    <li>Gained proficiency in core programming concepts, enhancing problem-solving and coding efficiency.</li>
-                    <li>Designed and implemented algorithms for word generation, user input validation, and result evaluation.</li>
-                </ul>
-                <h3>Lavender Notes App Website</h3>
-                <p class="date-location">Winter 2024 | Visual Studio Code | HTML + JavaScript + CSS</p>
-                <ul>
-                    <li>Developed a fully functional Notes App Website using HTML, CSS, and JavaScript.</li>
-                    <li>Implemented features such as note creation, editing, deletion, and checkboxes.</li>
-                    <li>Optimized UI/UX design for seamless interaction and cross-browser compatibility.</li>
-                </ul>
-                <h3>Grades Web App</h3>
-                <p class="date-location"> March 2025 | Visual Studio Code | HTML + JavaScript + CSS + SQL Python</p>
-                <ul>
-                    <li>Created a simple Grades Web App using HTML, CSS, and JavaScript, including an SQL in Python.</li>
-                    <li>Includes features allowing the user to add a grade, ask to display, edit, delete, and see all grades in the SQL database.</li>
-                </ul>
-                <h3>Character Project</h3>
-                <p class="date-location">December 2021 - February 2022 | Adobe Animate 2022| ActionScript®</p>
-                <ul>
-                    <li>Developed a creative and interactive animated website using Adobe Animate and ActionScript®.</li>
-                    <li>Acquired knowledge of web design principles, including layout, color theory, and user experience (UX), to produce visually appealing and functional designs.</li>
-                    <li>Utilized 2D animation skills to add motion graphics throughout the functional website.</li>
-                </ul>
-                <h3>In-progress Future Projects</h3>
-                <ul>
-                    <li>Wordle Website = Transforming past C++ Wordle program into a website online.</li>
-                    <li>Time Paradox = Creating an indie game using Renpy + Python.</li>
-                </ul>
-            </div>
-
-            <div class="content-box3">
-                <h2>VARIOUS SKILLS</h2>
-                <ul>
-                    <li><strong>Soft Skills:</strong> Problem-Solving, Leadership, Web Development Knowledge, Project Management, Teamwork, Adaptability, Teaching, Parallel Computing Knowledge, Data Structures</li>
-                    <li><strong>Technical Skills:</strong> C++, Technical Support, Linux, Python, C, Game Development, HTML, JavaScript, Adobe Creative Cloud, SQL, MIPS, Microsoft Office, Graphic Design, 2D Animation, Java, C#, CSS, UI/UX Design, TypeScript, Wix, Ren'py</li>
-                </ul>
-            </div>
-        </div>
+<section class="hero" id="about">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-name">Djeinabou Bah</div>
+      <h1 class="hero-title">CS &amp; AI Engineer<br/><span class="accent">building smart things.</span></h1>
+      <div class="hero-body">
+        <p>My work ranges from AI-powered learning platforms and audio classification models to spatial analysis and Spotify-driven mood analytics. I care about clean code, thoughtful UX, and solving problems that actually matter.</p>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#contact" class="btn">Get in Touch</a>
+      </div>
     </div>
+
+    <div class="cat-wrap">
+      <span class="sparkle"></span>
+      <span class="sparkle"></span>
+      <span class="sparkle"></span>
+      <span class="sparkle"></span>
+      <span class="sparkle"></span>
+
+      <svg class="pixel-cat" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+        <!-- ears -->
+        <rect x="2" y="1" width="2" height="2" fill="#4a9eff"/>
+        <rect x="3" y="2" width="1" height="1" fill="#5cb4ff"/>
+        <rect x="11" y="1" width="2" height="2" fill="#4a9eff"/>
+        <rect x="11" y="2" width="1" height="1" fill="#5cb4ff"/>
+        <!-- head -->
+        <rect x="2" y="3" width="12" height="5" fill="#4a9eff"/>
+        <rect x="3" y="4" width="2" height="1" fill="#5cb4ff"/>
+        <rect x="10" y="4" width="2" height="1" fill="#5cb4ff"/>
+        <!-- eyes -->
+        <rect x="5" y="5" width="1" height="1" fill="#0a0e1a"/>
+        <rect x="10" y="5" width="1" height="1" fill="#0a0e1a"/>
+        <!-- mouth -->
+        <rect x="7" y="6" width="2" height="1" fill="#1e6acc"/>
+        <rect x="6" y="7" width="4" height="1" fill="#1e6acc"/>
+        <!-- body -->
+        <rect x="3" y="8" width="10" height="3" fill="#4a9eff"/>
+        <rect x="4" y="9" width="2" height="2" fill="#5cb4ff"/>
+        <rect x="10" y="9" width="2" height="2" fill="#5cb4ff"/>
+        <!-- tail -->
+        <rect x="13" y="6" width="1" height="3" fill="#4a9eff"/>
+        <rect x="14" y="5" width="1" height="2" fill="#4a9eff"/>
+        <!-- paws -->
+        <rect x="3" y="11" width="2" height="1" fill="#1e6acc"/>
+        <rect x="11" y="11" width="2" height="1" fill="#1e6acc"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">Skills &amp; Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">MATLAB</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Frameworks &amp; Tools</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Next.js</span>
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Ubuntu</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Specializations</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Deep Learning</span>
+        <span class="skill-tag">Web Dev</span>
+        <span class="skill-tag">ArcGIS</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Android Studio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+
+  <div class="filter-bar" role="tablist">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="ai">AI / ML</button>
+    <button class="filter-btn" data-filter="web">Web Dev</button>
+    <button class="filter-btn" data-filter="gis">ArcGIS</button>
+    <button class="filter-btn" data-filter="design">Design / Animation</button>
+  </div>
+
+  <div class="projects-list" id="projects-list">
+
+    <article class="project-card" data-category="ai web">
+      <span class="project-category-badge">AI · Web Dev</span>
+      <div class="project-header">
+        <h3 class="project-title">AI-Powered STEM Learning Games Platform</h3>
+        <span class="project-date">Spring 2026</span>
+      </div>
+      <p class="project-subtitle">In-Class Internship · Lawrence Livermore National Laboratory</p>
+      <div class="project-stack">
+        <span class="stack-pill">React</span>
+        <span class="stack-pill">Next.js</span>
+        <span class="stack-pill">TypeScript</span>
+        <span class="stack-pill">JavaScript</span>
+        <span class="stack-pill">Gemini API</span>
+        <span class="stack-pill">ChatGPT API</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Developed a web platform featuring interactive STEM learning games that use real-time sensor data to explore advanced STEM concepts for high school and undergraduate students.</li>
+        <li>Built a responsive portal for launching and managing educational games with a React frontend and Next.js backend.</li>
+        <li>Integrated AI coaching features using Gemini and ChatGPT APIs to provide real-time feedback, guidance, and explanations during gameplay.</li>
+      </ul>
+
+      <a class="live-link" href="https://stemgames.online/" target="_blank" rel="noopener">
+        <span class="live-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="10" cy="10" r="8"/>
+            <ellipse cx="10" cy="10" rx="3.5" ry="8"/>
+            <path d="M2 10 H18"/>
+            <path d="M2.5 7 H17.5 M2.5 13 H17.5" opacity="0.5"/>
+          </svg>
+        </span>
+        <span class="live-content">
+          <span class="live-label">Web Portal</span>
+          <span class="live-url">stemgames.online</span>
+        </span>
+        <span class="live-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 4 L10 8 L6 12"/>
+          </svg>
+        </span>
+      </a>
+    </article>
+
+    <article class="project-card" data-category="ai">
+      <span class="project-category-badge">AI / ML</span>
+      <div class="project-header">
+        <h3 class="project-title">Whale Call Audio Analyzer AI</h3>
+        <span class="project-date">June 2025</span>
+      </div>
+      <p class="project-subtitle">Audio classification with PyTorch · Flask web app</p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">PyTorch</span>
+        <span class="stack-pill">Machine Learning</span>
+        <span class="stack-pill">Flask</span>
+        <span class="stack-pill">HTML/CSS</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Built a Python program using real-world whale call datasets from the WHOI Watkins Marine Mammal Sound Database to identify 7 unique species and generate AI summaries of uploaded whale audio.</li>
+        <li>Trained a machine learning model with PyTorch to classify whale species based on their vocalizations, using audio feature extraction.</li>
+        <li>Applied data analysis techniques to surface patterns in call frequency, call duration, and behavior by species.</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://github.com/jeinjein60/Whale-Call-Analyzer-AI" class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub Repo
+        </a>
+      </div>
+    </article>
+
+    <article class="project-card" data-category="web ai">
+      <span class="project-category-badge">Web Dev · Data</span>
+      <div class="project-header">
+        <h3 class="project-title">Spotify Player with Mood Statistics</h3>
+        <span class="project-date">May 2025</span>
+      </div>
+      <p class="project-subtitle">Full-stack web app · Spotify API · Mood analytics</p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Flask</span>
+        <span class="stack-pill">JavaScript</span>
+        <span class="stack-pill">Spotify API</span>
+        <span class="stack-pill">Figma</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Developed a full-stack web application that uses the Spotify API to log users in, access their playlists, control music playback, and adjust volume.</li>
+        <li>Created a mood analysis feature that derives emotional insight into listening habits from the user's recently played and top tracks.</li>
+        <li>Designed all website UI assets in Figma before implementing the frontend.</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://github.com/jeinjein60/Spotify-Player-Mood-Stats" class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub Repo
+        </a>
+      </div>
+    </article>
+
+    <article class="project-card" data-category="gis">
+      <span class="project-category-badge">ArcGIS · Spatial Analysis</span>
+      <div class="project-header">
+        <h3 class="project-title">Spatial Suitability Analysis · Merced Housing</h3>
+        <span class="project-date">Dec 2025</span>
+      </div>
+      <p class="project-subtitle">ENGR 180 · Multi-criteria decision analysis in ArcGIS Pro</p>
+      <div class="project-stack">
+        <span class="stack-pill">ArcGIS Pro</span>
+        <span class="stack-pill">ModelBuilder</span>
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Spatial Analysis</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Built a weighted multi-criteria GIS model to identify candidate parcels for low-income housing development in Merced, CA, based on a real-world RFP brief.</li>
+        <li>Designed a 5-criterion suitability score (proximity to parks, schools, rail; zoning; open land) implemented as a ModelBuilder pipeline of buffer / intersect / clip operations.</li>
+        <li>Filtered ~22 mi² of city land down to 2 final candidate site polygons, with documented limitations and next-step recommendations.</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://github.com/jeinjein60/Spatial-Suitability-Analysis-for-Low-Income-Housing-Sites-in-Merced" class="project-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View Methodology
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="experience">
+  <h2 class="section-title">Experience &amp; Leadership</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot">2026</div>
+      <div class="timeline-content">
+        <div class="timeline-role">In-Class Intern - STEM Learning Platform</div>
+        <div class="timeline-org">Lawrence Livermore National Laboratory · Spring 2026</div>
+        <div class="timeline-desc">
+          Collaborating with a team to build a React/Next.js platform that lets high school and undergraduate students explore advanced STEM concepts through interactive games powered by real-time sensor data and AI coaching.
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">PCI</div>
+      <div class="timeline-content">
+        <div class="timeline-role">PCI Committee Chair - E-Board</div>
+        <div class="timeline-org">National Society of Black Engineers (NSBE) · UC Merced</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Design and run programs, events, and workshops that spark K-12 interest in STEM fields.</li>
+            <li>Provide college-prep guidance for high school students pursuing higher education.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">EDU</div>
+      <div class="timeline-content">
+        <div class="timeline-role">BS, Computer Science &amp; Engineering</div>
+        <div class="timeline-org">University of California, Merced · Aug 2022 - May 2026</div>
+        <div class="timeline-desc">
+          Relevant coursework: Data Structures &amp; Algorithms · Full-Stack Web Dev · Parallel Computing · Mobile Computing · Distributed Software Systems · Intro to Deep Learning · Software Engineering · Spatial Analysis &amp; Modeling.
+          <br/><br/>
+          <strong style="color: var(--ink);">Certificate:</strong> Machine Learning Specialization — Stanford / DeepLearning.AI
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-card">
+    <h2 class="contact-title">Let's build something.</h2>
+    <p class="contact-sub">Open to new-grad SWE, ML, and AI roles starting May 2026.</p>
+    <div class="contact-links">
+      <a href="mailto:djeinabou.bodie@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/djeinabou-bah/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/jeinjein60" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 DJEINABOU BAH · FREMONT, CA
+</footer>
+
+<script>
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    projectCards.forEach(card => {
+      const categories = (card.dataset.category || '').split(' ');
+      if (filter === 'all' || categories.includes(filter)) {
+        card.classList.remove('project-hidden');
+      } else {
+        card.classList.add('project-hidden');
+      }
+    });
+  });
+});
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
